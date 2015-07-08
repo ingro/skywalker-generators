@@ -1,0 +1,18 @@
+import App from 'app';
+import Views from './edit_views';
+import { EditController } from 'application/controllers';
+
+class {{ name | capitalize }}EditController extends EditController {
+
+    get Views() { return Views; }
+
+    /*_getBreadcrumbsTitle(options) {
+        if (options.isNew()) {
+            return `Nuovo ${_.capitalize(this.code)}`;
+        }
+
+        return options.toJSON().name;
+    }*/
+}
+
+export default {{ name | capitalize }}EditController;

@@ -1,0 +1,6 @@
+{% raw %}
+{% import "base/macros" as helpers %}
+
+{{ helpers.form_field('name', name) }}
+{# Fields #}
+{% endraw %}

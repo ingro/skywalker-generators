@@ -1,0 +1,12 @@
+{% raw %}
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th id="id" class="sort">ID</th>
+        {# Columns... #}
+        <th>Operazioni</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+{% endraw %}

@@ -1,0 +1,26 @@
+import App from 'app';
+import ListViews from 'application/views/list';
+
+const Top = ListViews.TopControls.extend({
+	template: 'base/topControls'
+});
+
+const Row = App.Base.Views.RowGen.extend({
+	template: '{{ name }}/list/_row'
+});
+
+const Grid = App.Base.Views.TableGen.extend({
+	template: '{{ name }}/list/grid',
+	childView: Row
+});
+
+const Layout = App.Base.Views.ListLayout.extend({
+	template: 'base/list_layout'
+});
+
+export default {
+	Top,
+	Row,
+	Grid,
+	Layout
+};

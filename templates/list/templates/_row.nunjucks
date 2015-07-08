@@ -1,0 +1,10 @@
+{% raw %}
+{% import "base/macros" as helpers %}
+<td><input type="checkbox"></td>
+<td>{{ id }}</td>
+{# Rows... #}
+<td>
+    {{ helpers.edit_button() }}
+    {{ helpers.delete_button() }}
+</td>
+{% endraw %}
