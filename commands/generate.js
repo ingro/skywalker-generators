@@ -8,10 +8,17 @@ var Generate = Command.extend({
     desc: 'Generate boilerplate for a skywalker module',
 
     options: {
-        name: 'string'
+        name: {
+            type: 'string',
+            alias: 'n'
+        },
+        table: {
+            type: 'string',
+            alias: 't'
+        }
     },
 
-    run: function (name) {
+    run: function (name, table) {
 
         var confirm = {
             type: 'confirm',
@@ -24,7 +31,7 @@ var Generate = Command.extend({
             if (answers.confirm) {
                 var generator = new ModuleGenerator();
 
-                generator.build(name);
+                generator.build(name, table);
 
                 console.log(chalk.bold.green('All done!'));
             } else {

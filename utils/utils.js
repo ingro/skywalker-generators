@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-var configFileName = 'skygen.json';
+var configFileName = '.skygen';
 
 var utils = {
     checkConfig: function() {
@@ -24,7 +24,7 @@ var utils = {
         var config = false;
 
         try {
-            config = require(path.join(process.cwd(), configFileName));
+            config = JSON.parse(fs.readFileSync(path.join(process.cwd(), configFileName), 'utf8'));
         } catch(e) {
             //
         }

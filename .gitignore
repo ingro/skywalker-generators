@@ -1,5 +1,6 @@
 /node_modules
 /typings
 /dummy
+.skygen
 skygen.json
 jsconfig.json

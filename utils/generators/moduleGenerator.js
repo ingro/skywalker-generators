@@ -1,7 +1,27 @@
+// Example configuration
+// {
+// 	"path": "dummy",
+// 	"connector": {
+// 		"default": {
+// 			"type": "mysql",
+// 			"config": {
+// 				"host": "127.0.01",
+// 				"user": "foo",
+// 				"password": "bar",
+// 				"database": "baz"
+// 			}
+// 		}
+// 	}
+// }
+
 var fs = require('fs');
 var path = require('path');
 var mkdirp = require('mkdirp');
 var chalk = require('chalk');
+var _ = require('lodash');
+
+var mysql = require('mysql');
+var Promise = require('bluebird');
 
 var Utils = require('./../utils');
 var Renderer = require('./../renderer');
@@ -58,20 +78,77 @@ ModuleGenerator.prototype.createDirectory = function(dir) {
 };
 
 ModuleGenerator.prototype.createFile = function(tpl, rootDir, fileName) {
-	var data = Renderer.render(tpl, { name: this.name });
+	var data = Renderer.render(tpl, this.templateParams);
 	var filePath = path.resolve(rootDir, fileName);
 	fs.writeFile(filePath, data.trim());
 
 	console.log('Created file ' + chalk.bold.green(filePath));
 };
 
-ModuleGenerator.prototype.build = function(name) {
+ModuleGenerator.prototype.buildTemplateParams = function(fields) {
+
+	var params = { name: this.name };
+
+	if (fields) {
+		params.fields = _.pluck(fields, 'Field');
+	}
+
+	return params;
+}
+
+ModuleGenerator.prototype.getTableFields = function() {
+
+	var self = this;
+
+	return new Promise(function (resolve, reject) {
+		var mysqlConfig = self.config.connector.default.config;
+
+		var connection = mysql.createConnection({
+			host: mysqlConfig.host,
+			user: mysqlConfig.user,
+			password: mysqlConfig.password,
+			database: mysqlConfig.database,
+		});
+
+		connection.connect(function(err) {
+			if (err) {
+				console.log(err);
+			}
+
+			// console.log('connected as id ' + connection.threadId);
+
+			connection.query('SHOW COLUMNS FROM ' + self.table, function(err, rows, fields) {
+
+				if (err) {
+					console.log(err);
+				}
+
+				// console.log(rows);
+				resolve(rows);
+
+				connection.end();
+			});
+		});
+	});
+}
+
+ModuleGenerator.prototype.build = function(name, table) {
 	this.name = name;
 
-	this.createDirectories();
-	this.createModuleFile();
-	this.createListFiles();
-	this.createEditFiles();
+	if (table) {
+		this.table = table;
+	}
+
+	var self = this;
+
+	this.getTableFields().then(function(fields) {
+		self.templateParams = self.buildTemplateParams(fields);
+
+		self.createDirectories();
+		self.createModuleFile();
+		self.createListFiles();
+		self.createEditFiles();
+	});
 };
 
 module.exports = ModuleGenerator;
