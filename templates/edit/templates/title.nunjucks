@@ -1,7 +1,5 @@
-{% raw %}
 {% if not isNew %}
     <h2>Modifica "{{ name }}"</h2>
 {% else %}
     <h2>Crea nuovo</h2>
 {% endif %}
-{% endraw %}

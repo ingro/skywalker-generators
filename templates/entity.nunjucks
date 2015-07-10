@@ -1,22 +1,22 @@
-{% set ModelClass = name | capitalize + 'Model' %}
-{% set CollectionClass = name | capitalize + 'Collection' %}
+<% set ModelClass = name | capitalize + 'Model' %>
+<% set CollectionClass = name | capitalize + 'Collection' %>
 
 import BaseModel from 'application/model';
 import { ServerCollection } from 'application/collections';
 import HandlersCreator from 'components/app/handlers-creator';
 
-const {{ ModelClass }} = BaseModel.extend({
-	urlRoot: `${API_ROOT}/{{ name }}s`
+const <$ ModelClass $> = BaseModel.extend({
+	urlRoot: `${API_ROOT}/<$ name $>s`
 });
 
-const {{ CollectionClass }} = ServerCollection.extend({
-	model: {{ ModelClass }},
-	url: `${API_ROOT}/{{ name }}s`
+const <$ CollectionClass $> = ServerCollection.extend({
+	model: <$ ModelClass $>,
+	url: `${API_ROOT}/<$ name $>s`
 });
 
-HandlersCreator.registerStoreHandlers('{{ name }}', { Model: {{ ModelClass }}, Collection: {{ CollectionClass }}});
+HandlersCreator.registerStoreHandlers('<$ name $>', { Model: <$ ModelClass $>, Collection: <$ CollectionClass $>});
 
 export default {
-	{{ ModelClass }},
-	{{ CollectionClass }}
+	<$ ModelClass $>,
+	<$ CollectionClass $>
 };

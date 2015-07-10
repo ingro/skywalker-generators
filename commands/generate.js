@@ -31,7 +31,10 @@ var Generate = Command.extend({
             if (answers.confirm) {
                 var generator = new ModuleGenerator();
 
-                generator.build(name, table);
+                generator.build({
+                    name: name,
+                    table: table
+                });
 
                 console.log(chalk.bold.green('All done!'));
             } else {

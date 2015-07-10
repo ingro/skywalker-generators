@@ -7,7 +7,9 @@ var env = new nunjucks.configure(path.join(__dirname, './../templates'), {
 		blockStart: '<%',
 		blockEnd: '%>',
 		variableStart: '<$',
-		variableEnd: '$>'
+		variableEnd: '$>',
+		commentStart: '<#',
+    	commentEnd: '#>'
 	}
 });
 

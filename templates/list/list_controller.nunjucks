@@ -2,9 +2,9 @@ import App from 'app';
 import Views from './list_views';
 import { ListController } from 'application/controllers';
 
-class {{ name | capitalize }}ListController extends ListController {
+class <$ name | capitalize $>ListController extends ListController {
 
 	get Views() { return Views; }
 }
 
-export default {{ name | capitalize }}ListController;
+export default <$ name | capitalize $>ListController;

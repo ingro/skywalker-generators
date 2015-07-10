@@ -5,11 +5,11 @@ import EditViews from 'application/views/edit';
 const EditLayout = EditViews.Layout.extend({});
 
 const Title = EditViews.Title.extend({
-	template: '{{ name }}/edit/title'
+	template: '<$ name $>/edit/title'
 });
 
 const Edit = BaseViews.BaseItemView.extend({
-	template: '{{ name}}/edit/edit'
+	template: '<$ name $>/edit/edit'
 });
 
 export default {

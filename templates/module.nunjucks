@@ -1,10 +1,10 @@
-import 'entities/{{ name }}';
+import 'entities/<$ name $>';
 import ListController from './list/list_controller';
 import EditController from './edit/edit_controller';
 
 import HandlersCreator from 'components/app/handlers-creator';
 
-const code = '{{ name }}';
+const code = '<$ name $>';
 
 const API = {
 	[code]: () => {

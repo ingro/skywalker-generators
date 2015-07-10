@@ -85,15 +85,33 @@ ModuleGenerator.prototype.createFile = function(tpl, rootDir, fileName) {
 	console.log('Created file ' + chalk.bold.green(filePath));
 };
 
-ModuleGenerator.prototype.buildTemplateParams = function(fields) {
+ModuleGenerator.prototype.buildTemplateParams = function() {
 
-	var params = { name: this.name };
+	var params = {
+		name: this.name,
+		fields: []
+	};
 
-	if (fields) {
-		params.fields = _.pluck(fields, 'Field');
-	}
+	var self = this;
 
-	return params;
+	return new Promise(function (resolve, reject) {
+
+		if (self.params.table) {
+
+			self.getTableFields().then(function(fields) {
+				params.fields = _.pluck(fields, 'Field');
+
+				self.templateParams = params;
+
+				resolve();
+			});
+
+		} else {
+			self.templateParams = params;
+
+			resolve();
+		}
+	});
 }
 
 ModuleGenerator.prototype.getTableFields = function() {
@@ -117,7 +135,7 @@ ModuleGenerator.prototype.getTableFields = function() {
 
 			// console.log('connected as id ' + connection.threadId);
 
-			connection.query('SHOW COLUMNS FROM ' + self.table, function(err, rows, fields) {
+			connection.query('SHOW COLUMNS FROM ' + self.params.table, function(err, rows, fields) {
 
 				if (err) {
 					console.log(err);
@@ -132,17 +150,19 @@ ModuleGenerator.prototype.getTableFields = function() {
 	});
 }
 
-ModuleGenerator.prototype.build = function(name, table) {
-	this.name = name;
+ModuleGenerator.prototype.build = function(params) {
 
-	if (table) {
-		this.table = table;
-	}
+	_.defaults(params, {
+		table: false
+	});
+
+	this.params = params;
+
+	this.name = params.name;
 
 	var self = this;
 
-	this.getTableFields().then(function(fields) {
-		self.templateParams = self.buildTemplateParams(fields);
+	this.buildTemplateParams().then(function() {
 
 		self.createDirectories();
 		self.createModuleFile();

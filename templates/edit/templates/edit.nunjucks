@@ -1,5 +1,9 @@
 {% import "base/macros" as helpers %}
 
-<% for field in fields %>
-	{{ helpers.form_field('<$ field $>', <$ field $>) }}
-<% endfor %>
+<% if fields.length == 0 %>
+	{{ helpers.form_field('name', name) }}
+<% else %>
+	<% for field in fields %>
+		{{ helpers.form_field('<$ field $>', <$ field $>) }}
+	<% endfor %>
+<% endif %>

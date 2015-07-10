@@ -2,7 +2,7 @@ import App from 'app';
 import Views from './edit_views';
 import { EditController } from 'application/controllers';
 
-class {{ name | capitalize }}EditController extends EditController {
+class <$ name | capitalize $>EditController extends EditController {
 
     get Views() { return Views; }
 
@@ -15,4 +15,4 @@ class {{ name | capitalize }}EditController extends EditController {
     }*/
 }
 
-export default {{ name | capitalize }}EditController;
+export default <$ name | capitalize $>EditController;

@@ -6,11 +6,11 @@ const Top = ListViews.TopControls.extend({
 });
 
 const Row = App.Base.Views.RowGen.extend({
-	template: '{{ name }}/list/_row'
+	template: '<$ name $>/list/_row'
 });
 
 const Grid = App.Base.Views.TableGen.extend({
-	template: '{{ name }}/list/grid',
+	template: '<$ name $>/list/grid',
 	childView: Row
 });
 
