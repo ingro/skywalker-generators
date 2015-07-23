@@ -11,7 +11,9 @@ const <$ ModelClass $> = BaseModel.extend({
 
 const <$ CollectionClass $> = ServerCollection.extend({
 	model: <$ ModelClass $>,
-	url: `${API_ROOT}/<$ name $>s`
+	url: `${API_ROOT}/<$ name $>s`,
+
+	code: '<$ name $>'
 });
 
 HandlersCreator.registerStoreHandlers('<$ name $>', { Model: <$ ModelClass $>, Collection: <$ CollectionClass $>});
