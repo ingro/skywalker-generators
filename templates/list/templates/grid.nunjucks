@@ -1,6 +1,7 @@
 <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr>
+    	<th>[ ]</th>
         <th id="id" class="sort">ID</th>
         {# Columns... #}
         <th>Operazioni</th>
