@@ -7,13 +7,13 @@ import HandlersCreator from 'components/app/handlers-creator';
 const code = '<$ name $>';
 
 const API = {
-	[code]: () => {
-		return new ListController({ code });
-	},
+    [code]: () => {
+        return new ListController({ code });
+    },
 
-	[`${code}/:id`]: (ctx) => {
-		return new EditController({ code, item: ctx.params.id });
-	}
+    [`${code}/:id`]: (ctx) => {
+        return new EditController({ code, item: ctx.params.id });
+    }
 };
 
 HandlersCreator.registerModuleHandlers(code, API);

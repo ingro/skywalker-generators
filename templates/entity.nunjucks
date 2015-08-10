@@ -6,19 +6,19 @@ import { ServerCollection } from 'application/collections';
 import HandlersCreator from 'components/app/handlers-creator';
 
 const <$ ModelClass $> = BaseModel.extend({
-	urlRoot: `${API_ROOT}/<$ name $>s`
+    urlRoot: `${API_ROOT}/<$ name $>s`
 });
 
 const <$ CollectionClass $> = ServerCollection.extend({
-	model: <$ ModelClass $>,
-	url: `${API_ROOT}/<$ name $>s`,
+    model: <$ ModelClass $>,
+    url: `${API_ROOT}/<$ name $>s`,
 
-	code: '<$ name $>'
+    code: '<$ name $>'
 });
 
 HandlersCreator.registerStoreHandlers('<$ name $>', { Model: <$ ModelClass $>, Collection: <$ CollectionClass $>});
 
 export default {
-	<$ ModelClass $>,
-	<$ CollectionClass $>
+    <$ ModelClass $>,
+    <$ CollectionClass $>
 };

@@ -1,4 +1,3 @@
-import App from 'app';
 import Views from './edit_views';
 import { EditController } from 'application/controllers';
 
