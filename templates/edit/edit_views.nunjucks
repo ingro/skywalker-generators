@@ -1,4 +1,3 @@
-import BaseViews from 'application/views';
 import EditViews from 'application/views/edit';
 
 const EditLayout = EditViews.Layout.extend({});
@@ -7,7 +6,7 @@ const Title = EditViews.Title.extend({
     template: '<$ name $>/edit/title'
 });
 
-const Edit = BaseViews.BaseItemView.extend({
+const Edit = EditViews.EditPlain.extend({
     template: '<$ name $>/edit/edit'
 });
 
