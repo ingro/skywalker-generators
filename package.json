@@ -1,6 +1,6 @@
 {
   "name": "skywalker-generators",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Generators for Skywalker's apps",
   "main": "index.js",
   "scripts": {
