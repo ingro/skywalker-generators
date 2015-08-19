@@ -1,5 +1,5 @@
 {% import "base/macros" as helpers %}
-<td><input type="checkbox"></td>
+<td>{{ helpers.choosable(_chosen) }}</td>
 <td>{{ id }}</td>
 {# Rows... #}
 <td>
