@@ -3,6 +3,6 @@
 <td>{{ id }}</td>
 {# Rows... #}
 <td>
-    {{ helpers.edit_button() }}
+    {{ helpers.edit_button_link('<$ name $>', id) }}
     {{ helpers.delete_button() }}
 </td>
